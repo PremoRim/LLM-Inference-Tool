@@ -39,3 +39,4 @@
 - Git 推送报错「src refspec main does not match any」：本地分支是 master，远程是 main，执行 git branch -M main 重命名后再推送
 - Git 权限报错「Permission denied」：检查 GitHub 的 SSH 公钥是否配置正确
 - 用户删除报错「user is currently used by process」：用 exit 退出用户会话（而非 su root），或 kill -9 占用进程后再删除
+[权限测试：dev_user 可编辑笔记]
