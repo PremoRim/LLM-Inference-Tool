@@ -1,0 +1,28 @@
+# CMake通用过滤
+build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+
+# C++编译产物
+*.o
+*.a
+*.so
+*.out
+*.exe
+
+# Linux临时文件
+*.log
+*.tmp
+*.swp  # vim临时文件
+nohup.out
+
+# LLM相关冗余
+*.gguf.download  # 模型下载临时文件
+__pycache__/
+*.pyc
+
+# 系统文件
+.DS_Store
