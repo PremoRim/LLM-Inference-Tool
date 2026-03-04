@@ -75,3 +75,8 @@
 ### 4. Git 日志与回滚（代码版本管理）
 - git log --oneline：精简查看提交历史
 - git reset --hard HEAD~1：回滚上一版（谨慎，会丢失未提交修改）
+
+### 5. CMake 
+- mkdir build && cd build
+- cmake .. CMake上个目录的代码
+- make 生成可执行文件
