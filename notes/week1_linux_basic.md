@@ -80,3 +80,46 @@
 - mkdir build && cd build
 - cmake .. CMake上个目录的代码
 - make 生成可执行文件
+
+---
+
+## Day04：网络配置 + 防火墙 + CMake 多文件编译（AI 基建核心）
+
+### 1. 网络与端口查看
+- ip a：查看本机网卡与 IP 地址
+- ifconfig：旧版查看 IP 工具（需安装 net-tools）
+- ss -tulnp：查看 TCP/UDP 端口与对应进程
+- netstat -tulnp：传统端口查看命令
+- lsof -i:端口号：查看哪个进程占用该端口
+- ping -c 3 目标IP/域名：测试网络连通性
+
+### 2. 防火墙 firewalld 操作
+- systemctl status firewalld：查看防火墙状态
+- systemctl stop firewalld：临时关闭防火墙
+- systemctl disable firewalld：永久关闭防火墙
+- firewall-cmd --add-port=端口/tcp --permanent：永久开放端口
+- firewall-cmd --reload：重新加载防火墙规则
+- firewall-cmd --list-ports：查看已开放端口
+
+### 3. CMake 多文件项目结构
+- include：存放头文件 .h
+- src：存放源文件 .cpp
+- build：编译目录（外部分离编译）
+
+### 4. CMakeLists.txt 核心指令
+- cmake_minimum_required(VERSION 3.10)：指定最低 CMake 版本
+- project(项目名)：定义项目名称
+- include_directories(include)：添加头文件搜索路径
+- file(GLOB SOURCES "src/*.cpp")：批量收集所有 cpp 文件
+- add_executable(生成的程序名 ${SOURCES})：生成可执行文件
+
+### 5. CMake 编译流程
+- mkdir build && cd build：创建并进入编译目录
+- cmake ..：生成 Makefile
+- make：编译生成可执行文件
+- ./程序名：运行程序
+
+### 6. 工程化小技巧
+- 头文件加 #ifndef ... #define ... #endif 防止重复包含
+- 永远不在源码目录编译，保持代码干净
+- 所有练习统一放在 ~/LLM-Inference-Tool 仓库
