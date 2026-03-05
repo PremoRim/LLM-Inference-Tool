@@ -7,4 +7,4 @@
 ## 笔记导航
 | 学习阶段       | 笔记文件                          | 核心内容                     |
 |----------------|-----------------------------------|------------------------------|
-| 第1周          | [week1_linux_basic.md](notes/week1_linux_basic.md) | Linux 用户/权限、文件/目录、进程管理等 |
+| 第1周          | [week1_linux_basic.md](week01/notes/week1_linux_basic.md) | Linux 用户/权限、文件/目录、进程管理等 |
