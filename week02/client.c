@@ -6,7 +6,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>  // inet_addr头文件
 
-#define SERVER_PORT 8889
+#define SERVER_PORT 8888
 #define SERVER_IP "127.0.0.1"  // 本地回环地址
 #define BUF_SIZE 1024
 

@@ -5,7 +5,7 @@
 #include <sys/epoll.h>
 #include <string.h>
 
-#define PORT 8889
+#define PORT 8888
 #define MAX_EVENTS 10  // 单次最多处理10个事件
 
 int main() {

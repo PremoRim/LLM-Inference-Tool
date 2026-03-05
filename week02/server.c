@@ -5,7 +5,7 @@
 #include <sys/socket.h>  // socket核心头文件
 #include <netinet/in.h>  // 网络地址结构
 
-#define PORT 8889        // 监听端口
+#define PORT 8888       // 监听端口
 #define BUF_SIZE 1024    // 缓冲区大小
 
 int main() {
