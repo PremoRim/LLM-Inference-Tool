@@ -10,3 +10,4 @@
 |----------------|-----------------------------------|------------------------------|
 | 第1周          | [week1.md](notes/week1.md) | Linux 用户/权限、文件/目录、进程管理等 |
 | 第2周          | [week2.md](notes/week2.md) | CMake + socket + select/epoll|
+| 第3周          | [week3.md](notes/week3.md) | MySQL 增删改查(CRUD) + 联表查询 + 常用函数|
