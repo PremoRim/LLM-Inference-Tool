@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/mysql_login.dir/mysql_login.cpp.o -o mysql_login  -L/usr/lib64/ -lmariadb 

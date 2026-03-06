@@ -211,7 +211,6 @@ q                    # 退出GDB
 
 1. 安装依赖库
 
-sudo apt install libmysqlcppconn-dev # Ubuntu系统安装MySQL连接库
 
 2. 最小连接代码（核心模板）
 
