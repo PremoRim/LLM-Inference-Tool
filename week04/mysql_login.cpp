@@ -88,11 +88,11 @@ bool user_login(const string& username, const string& password) {
         }
 
         // 获取结果（判断是否存在该用户）
-        MYSQL_RES* res = mysql_stmt_result_metadata(stmt);
+        MYSQL_RES* res = mysql_stmt_result_metadata(stmt);// 元数据，只有表头元素
         if (res) {
             MYSQL_ROW row;
-            mysql_stmt_store_result(stmt);
-            if (mysql_stmt_num_rows(stmt) > 0) {
+            mysql_stmt_store_result(stmt);// 数据库查询结果还留在服务器上，按行打包下载到内存
+            if (mysql_stmt_num_rows(stmt) > 0) {// 查行数
                 login_success = true; // 用户名密码正确
 
                 // 6. 更新登录次数
@@ -118,41 +118,41 @@ bool user_login(const string& username, const string& password) {
                 }
 
                     // 2. 查询更新后的登录次数
-            const char* select_count_sql = "SELECT login_count FROM user WHERE username = ?";
-    MYSQL_STMT* count_stmt = mysql_stmt_init(mysql);
-    if (!count_stmt || mysql_stmt_prepare(count_stmt, select_count_sql, strlen(select_count_sql)) != 0) {
-        print_stmt_error(count_stmt, "预处理查询登录次数失败");
-        mysql_stmt_close(count_stmt);
-        mysql_stmt_close(update_stmt);
-        throw runtime_error("查询登录次数失败");
-    }
+                const char* select_count_sql = "SELECT login_count FROM user WHERE username = ?";
+                MYSQL_STMT* count_stmt = mysql_stmt_init(mysql);
+                if (!count_stmt || mysql_stmt_prepare(count_stmt, select_count_sql, strlen(select_count_sql)) != 0) {
+                    print_stmt_error(count_stmt, "预处理查询登录次数失败");
+                    mysql_stmt_close(count_stmt);
+                    mysql_stmt_close(update_stmt);
+                    throw runtime_error("查询登录次数失败");
+                }
 
-    // 绑定用户名参数
-    MYSQL_BIND count_param;
-    memset(&count_param, 0, sizeof(count_param));
-    count_param.buffer_type = MYSQL_TYPE_STRING;
-    count_param.buffer = (char*)username.c_str();
-    count_param.buffer_length = username.length();
-    mysql_stmt_bind_param(count_stmt, &count_param);
-    mysql_stmt_execute(count_stmt);
+                // 绑定用户名参数
+                MYSQL_BIND count_param;
+                memset(&count_param, 0, sizeof(count_param));
+                count_param.buffer_type = MYSQL_TYPE_STRING;
+                count_param.buffer = (char*)username.c_str();
+                count_param.buffer_length = username.length();
+                mysql_stmt_bind_param(count_stmt, &count_param);
+                mysql_stmt_execute(count_stmt);
 
-    // 绑定结果缓冲区
-    int login_count;
-    my_bool count_null;
-    MYSQL_BIND count_result;
-    memset(&count_result, 0, sizeof(count_result));
-    count_result.buffer_type = MYSQL_TYPE_INT;
-    count_result.buffer = &login_count;
-    count_result.is_null = &count_null;
-    mysql_stmt_bind_result(count_stmt, &count_result);
+                // 绑定结果缓冲区
+                int login_count;
+                my_bool count_null;
+                MYSQL_BIND count_result;
+                memset(&count_result, 0, sizeof(count_result));
+                count_result.buffer_type = MYSQL_TYPE_INT;
+                count_result.buffer = &login_count;
+                count_result.is_null = &count_null;
+                mysql_stmt_bind_result(count_stmt, &count_result);
 
-    // 读取并打印登录次数
-    mysql_stmt_store_result(count_stmt);
-    if (mysql_stmt_fetch(count_stmt) == 0 && !count_null) {
-        cout << "登录次数更新成功，本次是第 " << login_count << " 次登录" << endl;
-    } else {
-        cout << "登录次数更新成功，但查询次数失败" << endl;
-        }
+                // 读取并打印登录次数
+                mysql_stmt_store_result(count_stmt);
+                if (mysql_stmt_fetch(count_stmt) == 0 && !count_null) {
+                    cout << "登录次数更新成功，本次是第 " << login_count << " 次登录" << endl;
+                } else {
+                    cout << "登录次数更新成功，但查询次数失败" << endl;
+                }
                 
                 mysql_stmt_close(update_stmt);
             }
